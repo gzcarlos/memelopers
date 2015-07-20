@@ -1,5 +1,6 @@
 # memelopers
 
+**There's no real source code yet, i'm thinking about it**
 Here you can checkout some helper files from the memelopers project thing i'm working on
 
 more specifically:
