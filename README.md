@@ -1,6 +1,14 @@
 # memelopers
 
-**Fun facts [aboot](http://goo.gl/i2KGaJ) files and stuff**
+**Motivation and stuffs**
+
+The whole idea is for newbies to have a fun project to work on to show off their skills or just to take as reference if they want to make something
+Feel free to [create issues](https://goo.gl/uEn4iR) and pull requests, all suggestions are welcome
+Check [the trello board](https://goo.gl/5vwvsl), take any task you want and move it to doing. If somebody is working on something you want to work on, contact them and see if you can work together.
+
+You can follow me on the twitters if you want to [@eatskolnikov](https://goo.gl/xLJyTm)
+
+**Fun facts [aboot](http://goo.gl/i2KGaJ) some files**
 
 - gruntfile.js
 	I use grunt to run jshint, minify all assets(css, js, html) and make the publish of the app
@@ -13,9 +21,7 @@
 
 - manifest.json
 	Thanks to this mobile users will be prompted to install a shortcut to their home screen
-    
-    
-    
+
 Setup and installation
 ==============
 
