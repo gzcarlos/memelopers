@@ -1,0 +1,18 @@
+<div data-ng-init="init()">
+    <div class="row" ng-show="isCreationsEmpty">
+        <div class="col-sm-12">
+        No hay personajes creados todavia, <a href="/creation/create">crea uno</a>.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+        <ul class="list-unstyled list-inline">
+            <li ng-repeat="meme in memes">
+                <a href="#">
+                    <img class="img-rounded meme-thumbnail" ng-src="{{meme.thumb_url}}"/>
+                </a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>

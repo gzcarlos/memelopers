@@ -7,14 +7,14 @@ module.exports = function(grunt) {
         watch: {
             build: {
                 files: ['src/**/*.js','src/**/*.css', 'src/**/*.html', 'src/**/*.json'],
-                tasks: ['jshint', 'clean:build', 'concat', 'uglify', 'cssmin', 'htmlmin', 'copy', 'imagemin'],
+                tasks: ['jshint', 'clean:build', 'concat', 'uglify', 'cssmin', 'htmlmin', 'copy', 'imagemin', 'remove'],
                 options: {
                     spawn: false,
                 },
             },
             justcode: {
                 files: ['src/**/*.js','src/**/*.css', 'src/**/*.html', 'src/**/*.json'],
-                tasks: ['jshint',  'concat', 'uglify', 'cssmin', 'htmlmin', 'copy'],
+                tasks: ['jshint',  'concat', 'uglify', 'cssmin', 'htmlmin', 'copy','remove'],
                 options: {
                     spawn: false,
                 },
@@ -49,13 +49,10 @@ module.exports = function(grunt) {
             app:{
                 src: 'build/app.js',
                 dest: 'build/app.min.js'
-            }
-        },
-        notify_hooks: {
-            options: {
-                enabled: true,
-                max_jshint_notifications: 5,
-                duration: 3
+            },
+            sw: {
+                src: 'src/service-worker.js',
+                dest: 'build/service-worker.js'
             }
         },
         htmlmin: {
@@ -84,14 +81,15 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, flatten: true, src: ['src/manifest.json'], dest: 'build/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['src/.htaccess'], dest: 'build/', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['src/assets/fonts/*'], dest: 'build/assets/fonts/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['src/assets/fonts/*'], dest: 'build/assets/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['src/assets/js/serviceworker-cache-polyfill.js'], dest: 'build/assets/js/', filter: 'isFile'}
                 ]
             }
         },
         clean:{
             build: {
                 src:['build/']
-            }
+            },
         },
         imagemin: {
             dynamic: {
@@ -102,8 +100,23 @@ module.exports = function(grunt) {
                     dest: 'build'
                 }]
             }
-        }
+        },
+        notify_hooks: {
+            options: {
+                enabled: true,
+                max_jshint_notifications: 5,
+                duration: 3
+            }
+        },
+        remove: {
+            clean: {
+                trace: true,
+                fileList: ['build/app.js', 'build/assets/css/main.css']
+            }
+        },
+
     });
+    grunt.loadNpmTasks('grunt-remove');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -115,7 +128,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.registerTask('build', function () {
-        grunt.task.run(['jshint', 'clean:build', 'concat', 'uglify', 'cssmin', 'htmlmin', 'copy', 'imagemin']);
+        grunt.task.run(['jshint', 'clean:build', 'concat', 'uglify', 'cssmin', 'htmlmin', 'copy', 'imagemin', 'remove']);
     }); 
     grunt.registerTask('default', ['watch']);
 };

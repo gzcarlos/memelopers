@@ -1,0 +1,37 @@
+<div class="row" data-ng-init="init()">
+	<div class="col-sm-12">
+		<div class="row" ng-show="isCreationsEmpty()">
+			<div class="col-sm-12">
+				No hay memes creados todavia, <a href="/creation/create"><b>crea uno</b></a>.<br/>
+			</div>
+		</div>
+		<div class="row" ng-repeat="creation in creations">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3 class="creation_title">
+							<a href="/creation/details/{{creation.id}}">{{creation.full_text}}</a>
+						</h3>
+						<div class="panel panel-default creation">
+							<div class="panel-body">
+								<a href="/creation/details/{{creation.id}}">
+									<img ng-src="{{creation.url}}" style="width:100%" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="social-buttons">
+							<a facebook-feed-share class="facebookShare" data-url='http://memelopers.torib.io/creations/details/{{creation.id}}' data-shares='shares', data-description="{{creation.full_text}}">{{ shares }}</a>
+							<a twitter  data-lang="en" data-count='horizontal' data-url='http://memelopers.torib.io/creations/details/{{creation.id}}' data-size="medium" data-text='{{creation.full_text}}' ></a>
+							<a gplus class="g-plus" data-size="tall" data-annotation="bubble" data-href='http://memelopers.torib.io/creations/details/{{creation.id}}' data-action='share'></a>
+							<a tumblr-image data-source='{{creation.url}}' data-caption='{{creation.full_text}}' data-clickthru='http://memelopers.torib.io/creations/details/{{creation.id}}'></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
